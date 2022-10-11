@@ -1,10 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import rateLimit from '../../utils/rate-limit'
-import { sample } from '@ededejr/utils';
-import { ArtGenerator, AvailableGenerators } from '../../utils/arte'
+import rateLimit from '../../../../utils/rate-limit'
+import { Generators } from '../../../../utils/arte'
 import { Resvg } from '@resvg/resvg-js';
-import Randomizer from '../../utils/arte/utilities/randomizer';
-import path from 'path';
 
 const limiter = rateLimit({
   interval: 60 * 1000, // 60 seconds
@@ -27,23 +24,9 @@ export default async function handler(
 }
 
 async function generateRandomImage() {
-  const fontDirectory = path.join(process.cwd(), 'fonts');
-  const font = (file: TemplateStringsArray) => path.join(fontDirectory, file[0]);
-
-  const generator: ArtGenerator = sample(AvailableGenerators);
-  const svg = generator.model.generateString();
-  const fontFiles = [
-    font`BebasNeue-Regular.ttf`,
-    font`Bungee-Regular.ttf`,
-  ];
-
-  const resvg = new Resvg(svg, {
-    font: {
-      loadSystemFonts: false,
-      defaultFontFamily: Randomizer.decide('Bebas Neue', 'Bungee'),
-      fontFiles
-    }
-  });
+  const generator = Generators.GradientsAndFlatColors;
+  const svg = generator.generateString();
+  const resvg = new Resvg(svg);
   const pngData = resvg.render();
   const buffer = pngData.asPng();
   return buffer;

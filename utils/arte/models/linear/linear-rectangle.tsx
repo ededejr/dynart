@@ -36,10 +36,10 @@ export default class LinearRectangleModel extends LinearModel<Props> {
       rects.push((
         <rect
           key={index}
-          x={ModelBuilder.numToPercent(this.moveLayer(calculatedWidth))}
-          y={ModelBuilder.numToPercent(this.moveLayer(calculatedHeight))}
-          height={ModelBuilder.numToPercent(calculatedHeight)}
-          width={ModelBuilder.numToPercent(calculatedWidth)}
+          x={this.svgWidth / 2 - calculatedWidth / 2}
+          y={this.svgHeight / 2 - calculatedHeight / 2}
+          height={calculatedHeight}
+          width={calculatedWidth}
           fill={fill}
           style={{
             opacity,
