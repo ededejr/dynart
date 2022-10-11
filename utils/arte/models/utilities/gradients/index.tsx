@@ -12,6 +12,7 @@ const _Gradients = (() => {
   forOwn(GradientDefinitions, (stops, key, obj) => {
     if (key && obj) {
       const _key = key as keyof typeof GradientDefinitions;
+      // @ts-ignore-next-line -> @todo fix type error in @ededejr/utils
       gradients[_key] = createGradient(key, ...stops);
     }
   });
