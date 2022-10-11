@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as makeId } from 'uuid'
 import rateLimit from '../../utils/rate-limit'
 
 const limiter = rateLimit({
@@ -13,7 +13,7 @@ export default async function handler(
 ) {
   try {
     await limiter.check(res, 10, 'CACHE_TOKEN') // 10 requests per minute
-    res.status(200).json({ id: uuidv4() })
+    res.status(200).json({ id: makeId() })
   } catch {
     res.status(429).json({ error: 'Rate limit exceeded' })
   }
