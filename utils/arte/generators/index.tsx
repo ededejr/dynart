@@ -11,3 +11,4 @@ export { default as StrokesAndFlatColors } from './strokes-and-flat-colors';
 export { default as Letters } from './letters';
 export { default as AlphabetCluster } from './alphabet-cluster';
 export { default as SymbolsCluster } from './symbols-cluster';
+export { default as DeLogo } from './de-logo';

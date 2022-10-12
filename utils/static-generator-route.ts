@@ -20,7 +20,9 @@ export default class StaticGeneratorRoute {
   ) => {
     console.log(`[API] Generating "${this.generatorKey}"...`);
     try {
-      await this.limiter.check(res, 10, 'CACHE_TOKEN') // 10 requests per minute
+      if (process.env.NODE_ENV !== 'development') {
+        await this.limiter.check(res, 10, 'CACHE_TOKEN') // 10 requests per minute
+      }
       const buffer = await this.generateImage();
       res.setHeader('Content-Type', 'image/png');
       res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=60');
