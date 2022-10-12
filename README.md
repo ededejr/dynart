@@ -39,7 +39,7 @@ X-RateLimit-Remaining: 0
 ### Arte
 Spinning this up so quickly was possible due to the previous work done in the Arte project. Arte is a generative art project, which generated svg variants based on encodings of underlying models. This infographic explains the system best:
 
-![Arte Architecture Diagram](https://raw.githubusercontent.com/ededejr/arte/main/architecture.png?token=GHSAT0AAAAAABQNXRHJN7FCTHPV4ZIYMYR6Y2GYFCQ)
+![Arte Conceptual Model](https://user-images.githubusercontent.com/16638639/195362806-27ecceab-eefe-4f96-b417-eae7b8f7389b.png)
 
 The Arte generators can output an `svg` string, rendered by `ReactDOMServer.renderToStaticMarkup`. I ported over the code for Arte, and adapted it slightly. In the future this could be reworked entirely for dynart.
 
