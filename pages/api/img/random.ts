@@ -36,7 +36,6 @@ async function generateRandomImage() {
     font`BebasNeue-Regular.ttf`,
     font`Bungee-Regular.ttf`,
   ];
-  console.log(fontFiles);
 
   const resvg = new Resvg(svg, {
     font: {

@@ -6,7 +6,7 @@ export default function Index() {
     <main className={styles.container}>
       <h1>dynart</h1>
       <p>
-        Images generated on the fly using <a href="https://reactjs.org/">React</a> and <a href="https://resvg.org/">Resvg</a>.
+        Images generated on the fly using <a href="https://reactjs.org/">React</a> and <a href="https://resvg.org/">Resvg</a>. Inspired by <a href="https://vercel.com/blog/introducing-vercel-og-image-generation-fast-dynamic-social-card-images">vercel/og</a>.
       </p>
       <Image src="/api/img/random" alt="Generated Image" width={1200} height={630} />
       <p>Built with ❤️ by <a href="https://twitter.com/ededejr">@ededejr</a></p>
