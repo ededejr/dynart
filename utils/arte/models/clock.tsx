@@ -54,7 +54,7 @@ export default class ClockModel extends BaseModel {
     let polylines = [];
 
     for (let index = 0; index < count; index++) {
-      const generatedProps = generateProps ? generateProps(index, count) : {};
+      const generatedProps = generateProps ? generateProps(index, this.width, this.height) : {};
       const generatedStyle = generateStyles ? generateStyles(index, count) : {};
       const completion = (index / count);
       const percentComplete = completion * 100;
@@ -127,7 +127,7 @@ export declare namespace ClockModel {
     /**
      * Generate props per layer
      */
-    generateProps?: (index: number, count: number) => T
+    generateProps?: (index: number, width: number, height: number) => T
     /**
      * Generate styles
      */

@@ -48,7 +48,7 @@ export default class LinearPolylineModel extends LinearModel<Props> {
 
   private getDefaultConfiguration(): Configuration {
     return {
-      count: 10,
+      count: 100,
       direction: 'inward',
       getColor: (index, count) => {
         const getHue = () => Colors.random.hue(((1 - (index/count)) * 255))

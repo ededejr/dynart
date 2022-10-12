@@ -2,10 +2,16 @@
   padding: 4rem 1rem;
   max-width: 50rem;
   margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@supports (font-variation-settings: normal) {
+  .container { 
+    font-family: 'Inter var', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
 }
 
 .container h1 {

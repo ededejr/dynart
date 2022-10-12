@@ -1,34 +1,15 @@
-import { useState } from 'react'
+import Image from 'next/image'
 import styles from '../styles.module.css'
 
 export default function Index() {
-  const [response, setResponse] = useState<Record<string, unknown> | null>(null)
-
-  const makeRequest = async () => {
-    const res = await fetch('/api/user')
-
-    setResponse({
-      status: res.status,
-      body: await res.json(),
-      limit: res.headers.get('X-RateLimit-Limit'),
-      remaining: res.headers.get('X-RateLimit-Remaining'),
-    })
-  }
-
   return (
     <main className={styles.container}>
-      <h1>Next.js API Routes Rate Limiting</h1>
+      <h1>dynart</h1>
       <p>
-        This example uses <code className={styles.inlineCode}>lru-cache</code>{' '}
-        to implement a simple rate limiter for API routes (Serverless
-        Functions).
+        Images generated on the fly using <a href="https://reactjs.org/">React</a> and <a href="https://resvg.org/">Resvg</a>.
       </p>
-      <button onClick={() => makeRequest()}>Make Request</button>
-      {response && (
-        <code className={styles.code}>
-          <pre>{JSON.stringify(response, null, 2)}</pre>
-        </code>
-      )}
+      <Image src="/api/img/random" alt="Generated Image" width={1200} height={630} />
+      <p>Built with ❤️ by <a href="https://twitter.com/ededejr">@ededejr</a></p>
     </main>
   )
 }

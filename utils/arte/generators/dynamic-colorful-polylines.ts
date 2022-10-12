@@ -25,7 +25,7 @@ function printCoordinates(coordinates: { x: number, y: number }[], arrow = false
 }
 
 function generateCoordinates() {
-  const array = new Array(Randomizer.sample(5)).fill(0);
+  const array = new Array(Randomizer.sample(100)).fill(0);
   const coordinates = ModelBuilder.getRandomCoordinates();
 
   return array.map((_, index) => {

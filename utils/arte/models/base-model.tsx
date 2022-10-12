@@ -6,14 +6,16 @@ export default abstract class BaseModel {
   private $configuration: Configuration;
   protected history = new Map<string, JSX.Element>();
   protected size = 630;
+  protected height = 630;
+  protected width = 1200;
 
   // Support legacy methods 
   protected get svgWidth() {
-    return this.size;
+    return this.width;
   }
 
   protected get svgHeight() {
-    return this.size;
+    return this.height;
   }
 
   abstract render(): JSX.Element;
@@ -50,9 +52,9 @@ export default abstract class BaseModel {
         {...props}
         fill={backgroundColor}
         rx={borderRadius}
-        height={this.size}
-        width={this.size}
-        viewBox={`0 0 ${this.size} ${this.size}`}
+        height={this.height}
+        width={this.width}
+        viewBox={`0 0 ${this.width} ${this.height}`}
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>

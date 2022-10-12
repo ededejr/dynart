@@ -12,27 +12,28 @@ const Clocks = new ClockModel({
     getColor: () => {
       return Colors.random.color()
     },
-    generateProps: (index, count) => {
-      const origin = {x: 50, y: 50};
+    generateProps: (_, width, height) => {
+      const origin = {x: width/2, y: height/2};
       const coordinates = { ...origin };
 
-      const limit = index === 0 ? 50 : 40;
-      coordinates.x = 20 + Randomizer.sample(limit);
-      coordinates.y = 50 + (Randomizer.decide(1, -1) * (Randomizer.sample(20) + 10));
+      // Do not use Randomizer here to increase variance
+      coordinates.x = Math.floor(Math.random() * width * 0.8);
+      coordinates.y = Math.floor(Math.random() * height * 0.8);
 
       return {
         points: printCoordinates([origin, coordinates]),
+        strokeWidth: 7,
       };
     }
   },
   background: {
     generateProps: () => ({
-      rx: ModelBuilder.percentage(),
+      rx: 0,
       stroke: Colors.random.color(),
-      x: 5,
-      y: 5,
-      width: '90%',
-      height: '90%',
+      x: 0,
+      y: 0,
+      width: '100%',
+      height: '100%',
     }),
     getColor: () => Colors.random.color()
   }
