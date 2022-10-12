@@ -7,17 +7,17 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
         <title>{meta.title}</title>
-        <meta name="googlebot" content="follow, index, noarchive" />
-        <meta name="robots" content="follow, index, noarchive" />
+        <meta property="googlebot" content="follow, index, noarchive" />
+        <meta property="robots" content="follow, index, noarchive" />
         <link rel="canonical" href={meta.url} />
 
-        <meta name="description" content={meta.description} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:creator" content={`@${meta.owner.twitter}`} />
-        <meta name="twitter:site" content={`@${meta.owner.twitter}`} />
-        <meta name="twitter:title" content={meta.title} />
-        <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={meta.image} />
+        <meta property="description" content={meta.description} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:creator" content={meta.owner.twitter} />
+        <meta property="twitter:site" content={meta.owner.twitter} />
+        <meta property="twitter:title" content={meta.title} />
+        <meta property="twitter:description" content={meta.description} />
+        <meta property="twitter:image" content={meta.image} />
         
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_us" />
@@ -38,6 +38,6 @@ const meta = {
   image: 'https://dynart.edede.ca/api/img/random',
   url: 'https://dynart.edede.ca',
   owner: {
-    twitter: 'ededejr',
+    twitter: '@ededejr',
   }
 }
