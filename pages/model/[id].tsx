@@ -8,11 +8,20 @@ export default function Page() {
   const { id } = router?.query || {};
   const isVerifed = id && typeof id === 'string' && verifyModelParam(id);
   const imageRoute = isVerifed ? `/api/img/s/${id}` : '/api/img/random';
+  const title = isVerifed ? `dynart - ${id}` : 'dynart';
+  const description = isVerifed ? `Image generated with ${id} model` : 'Images generated on the fly using React and Resvg.';
 
   return (
     <>
       <Head>
-        <title>{isVerifed ? `dynart - ${id}` : 'dynart'}</title>
+        <title>{title}</title>
+        <meta name="twitter:title" content={title} />
+        <meta property="og:title" content={title} />
+
+        <meta name="description" content={description} />
+        <meta name="twitter:description" content={description} />
+        <meta property="og:description" content={description} />
+
         <meta name="twitter:image" content={imageRoute} />
         <meta property="og:image" itemProp="image" content={imageRoute} />
       </Head>
