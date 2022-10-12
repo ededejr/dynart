@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 
-export default function App({ Component, pageProps, router }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<>
       <Head>
@@ -35,7 +35,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
 const meta = {
   title: 'dynart',
   description: 'Images generated on the fly using React and Resvg.',
-  image: '/api/img/random',
+  image: 'https://dynart.edede.ca/api/img/random',
   url: 'https://dynart.edede.ca',
   owner: {
     twitter: 'ededejr',

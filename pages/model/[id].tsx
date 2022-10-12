@@ -3,13 +3,16 @@ import Image from 'next/image'
 import { useRouter } from 'next/router';
 import styles from '../../styles.module.css'
 
+const getHostname = () => process.env.NODE_ENV === 'development' ? '' : 'https://dynart.edede.ca';
+
 export default function Page() {
   const router = useRouter();
   const { id } = router?.query || {};
-  const isVerifed = id && typeof id === 'string' && verifyModelParam(id);
-  const imageRoute = isVerifed ? `/api/img/s/${id}` : '/api/img/random';
-  const title = isVerifed ? `dynart - ${id}` : 'dynart';
-  const description = isVerifed ? `Image generated with ${id} model` : 'Images generated on the fly using React and Resvg.';
+  const isVerified = Boolean(id && typeof id === 'string' && verifyModelParam(id));
+  
+  const imageRoute = `${getHostname()}${isVerified ? `/api/img/s/${id}` : '/api/img/random'}`;
+  const title = isVerified ? `dynart - ${id}` : 'dynart';
+  const description = isVerified ? `Image generated with ${id} model` : 'Images generated on the fly using React and Resvg.';
 
   return (
     <>
@@ -27,7 +30,7 @@ export default function Page() {
       </Head>
       <main className={styles.container}>
         <h1>dynart</h1>
-        {isVerifed ? (
+        {isVerified ? (
           <p>
             The following image is generated using the <code>{id}</code> model.
           </p>
