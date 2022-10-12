@@ -1,7 +1,9 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps, router }) {
+  const isModelPage = router.pathname === '/model/[id]';
+
 	return (
 		<>
       <Head>
@@ -11,21 +13,28 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta property="robots" content="follow, index, noarchive" />
         <link rel="canonical" href={meta.url} />
 
-        <meta property="description" content={meta.description} />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:creator" content={meta.owner.twitter} />
         <meta property="twitter:site" content={meta.owner.twitter} />
-        <meta property="twitter:title" content={meta.title} />
-        <meta property="twitter:description" content={meta.description} />
-        <meta property="twitter:image" content={meta.image} />
         
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_us" />
         <meta property="og:site_name" content={meta.title} />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:title" content={meta.title} />
-        <meta property="og:image" itemProp="image" content={meta.image} />
         <meta property="og:url" content={meta.url} />
+
+        {!isModelPage ? (
+          <>
+            <meta property="description" content={meta.description} />
+            <meta property="twitter:description" content={meta.description} />
+            <meta property="og:description" content={meta.description} />
+    
+            <meta property="og:title" content={meta.title} />
+            <meta property="twitter:title" content={meta.title} />
+            
+            <meta property="twitter:image" content={meta.image} />
+            <meta property="og:image" itemProp="image" content={meta.image} />
+          </>
+        ) : null}
       </Head>
       <Component {...pageProps} />
 		</>
@@ -40,4 +49,4 @@ const meta = {
   owner: {
     twitter: '@ededejr',
   }
-}
+};
