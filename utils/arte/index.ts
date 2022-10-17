@@ -20,7 +20,17 @@ export interface ArtGenerator {
 const GeneratorsArray: ArtGenerator[] = Object.keys(Generators).map((name) => ({ 
   name,
   // @todo, expand to more designs
-  finished: ['Letters', 'AlphabetCluster', 'SymbolsCluster'].includes(name),
+  finished: [
+    'Letters', 
+    'AlphabetCluster', 
+    'SymbolsCluster',
+    'Clocks',
+    'ColorfulCircles',
+    'ColorfulSquares',
+    'MostlyBlues',
+    'DeLogo',
+    'RandomBorderRadiusColors'
+  ].includes(name),
   model: Generators[name as keyof typeof Generators]  
 }));
 

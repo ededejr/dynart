@@ -1,5 +1,5 @@
 .container {
-  padding: 4rem 1rem;
+  padding: 2rem 1rem 4rem;
   max-width: 50rem;
   margin: 0 auto;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
@@ -41,8 +41,8 @@
 }
 
 .container a {
-  text-decoration: none;
-  color: #0070f3;
+  text-decoration: underline;
+  color: rgb(28, 130, 172);
 }
 
 .inlineCode {
@@ -56,18 +56,36 @@
   content: '`';
 }
 
-.code {
+.container > * > code {
   margin-top: 16px;
   display: block;
   background: #222222;
   border-radius: 8px;
   padding: 16px;
   color: white;
-  font-size: 16px;
   line-height: 1.4;
+}
+
+.container > p > code {
+  display: inline-block;
+  background: transparent;
+  border-radius: 8px;
+  padding: 2px 4px;
+  color: rgb(83, 77, 93);
+  font-weight: bold;
+  line-height: inherit;
+  margin-top: 0;
 }
 
 .links {
   margin-top: 16px;
   color: #9c9c9c;
+}
+
+.attribution {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+  font-size: 0.8em;
 }

@@ -1,0 +1,54 @@
+import Image from 'next/image';
+import Attribution from '../components/Attribution';
+
+# dynart
+
+Images generated on the fly using [React](https://reactjs.org/) and [Resvg](https://resvg.org/). Inspired by [vercel/og](https://vercel.com/blog/introducing-vercel-og-image-generation-fast-dynamic-social-card-images).
+
+<Image src="/api/img/random" alt="Generated Image" width={1200} height={630} />
+
+## Background
+This proof of concept explores generating dynamic og images on the fly. This initially arose from discussions with [@magusnn](https://twitter.com/magusnn) a few months ago and resurged with the announcement of `vercel/og`.
+
+The `@vercel/og` package remains closed source at the time of this writing, and you can learn more about it in their [blog post](https://vercel.com/blog/introducing-vercel-og-image-generation-fast-dynamic-social-card-images). After digging in a bit, I wagered we could build a similar service using a custom stack sharing similar foundations.
+
+## Technical Design
+I wrote this fairly quickly over the course of a few hours, so its definitely not ready for production. However it does outline a possible path forward to implement this service on a larger scale. An edge network could be the optimal approach for this, even though I am not using one here.
+
+Another approach being considered for scaling the service, is to isolate it as a component of a distributed system, where edge nodes request a new image and pipe through the response.
+
+### Api Routes with Next
+The server routes are served by Next+Vercel. Its a few standard routes responsible for the image generation. You can request either a random image (from a select few models) using `/random` or a specific type of image using `/s/<generator name>`.
+
+The api routes are also guarded using a rate-limiter. Its based off Next's api-routes with rate limiter example which you can set up with:
+
+```bash
+npx create-next-app --example api-routes-rate-limit api-routes-rate-limit-app
+```
+
+An `lru-cache` is used to implement a simple rate limiter for API routes ([Serverless Functions](https://vercel.com/docs/serverless-functions/introduction)).
+
+```bash
+curl http://localhost:3000/api/img/random -I
+HTTP/1.1 200 OK
+X-RateLimit-Limit: 10
+X-RateLimit-Remaining: 9
+
+curl http://localhost:3000/api/img/random -I
+HTTP/1.1 429 Too Many Requests
+X-RateLimit-Limit: 10
+X-RateLimit-Remaining: 0
+```
+
+### Arte
+Spinning this up so quickly was possible due to the previous work done in the Arte project. Arte is a generative art project, which generated svg variants based on encodings of underlying models. This infographic explains the system best:
+
+<Image alt="Arte Conceptual Model" src="https://user-images.githubusercontent.com/16638639/195362806-27ecceab-eefe-4f96-b417-eae7b8f7389b.png" width={1200} height={630} />
+
+The Arte generators can output an `svg` string, rendered by `ReactDOMServer.renderToStaticMarkup`. I ported over the code for Arte, and adapted it slightly. In the future this could be reworked entirely for dynart.
+
+### Resvg
+The final piece of the puzzle is converting the generated `svg` string into an image. `@vercel/og` abstracts this away I suspect behind `ImageResponse`. [vercel/satori](https://github.com/vercel/satori) converts the passed JSX into an `svg` string, and then `ImageResponse` generates the image. In this case, we already have the generated `svg` string, and can avoid `@vercel/og` entirely by using [resvg-js](https://github.com/yisibl/resvg-js) to convert the `svg` into an image. This is the same package used by Vercel.
+
+---
+<Attribution />

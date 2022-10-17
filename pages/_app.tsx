@@ -1,13 +1,15 @@
 import { AppProps } from 'next/app';
+import styles from '../styles.module.css'
 import Head from 'next/head';
 
-export default function App({ Component, pageProps, router }) {
+export default function App({ Component, pageProps, router }: AppProps) {
   const isModelPage = router.pathname === '/model/[id]';
 
 	return (
 		<>
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="/index.css" />
         <title>{meta.title}</title>
         <meta property="googlebot" content="follow, index, noarchive" />
         <meta property="robots" content="follow, index, noarchive" />
@@ -36,7 +38,9 @@ export default function App({ Component, pageProps, router }) {
           </>
         ) : null}
       </Head>
-      <Component {...pageProps} />
+      <main className={styles.container}>
+        <Component {...pageProps} />
+      </main>
 		</>
 	);
 }

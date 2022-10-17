@@ -46,7 +46,7 @@ export default class LettersModel extends BaseModel {
 
     // Scale the size of the box down 
     // to introduce padding
-    const scale = 0.9;
+    const scale = 0.85;
     const letterWidth = (this.svgWidth * scale)/size;
     const letterHeight = (this.svgHeight * scale)/size;
 
