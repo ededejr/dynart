@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@ededejr/randomly": "^0.1.0",
-    "@ededejr/utils": "^0.5.0",
+    "@ededejr/utils": "^0.5.1",
     "@faker-js/faker": "^7.5.0",
     "@resvg/resvg-js": "^2.1.0",
     "lru-cache": "^7.12.0",
