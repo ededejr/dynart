@@ -4,7 +4,7 @@ A proof of concept which explores generating dynamic og images (for seo) on the 
 
 The team at Vercel recently released a new package, which handles this sort of thing. You can learn more about it in their [blog post](https://vercel.com/blog/introducing-vercel-og-image-generation-fast-dynamic-social-card-images). After seeing this, I dug deeper into the libraries they were using and was able to build out a custom stack sharing similar foundations.
 
-The `@vercel/og` package remains closed source at the time of this writing, and I suspect it's a wrapper to keep folks locked into the Vercel system. Understandble for the business but I wagered we could build our own.
+The `@vercel/og` package remains closed source at the time of this writing, and I suspect it's a wrapper to keep folks locked into the Vercel system. Understandable for the business but I wagered we could build our own.
 
 ## Technical Design
 I wrote this fairly quickly over the course of a few hours, so its definitely not ready for production. However it does outline a possible path forward to implement this service on a larger scale. An edge network could be the optimal approach for this, even though I am not using one here.
@@ -23,12 +23,12 @@ npx create-next-app --example api-routes-rate-limit api-routes-rate-limit-app
 An `lru-cache` is used to implement a simple rate limiter for API routes ([Serverless Functions](https://vercel.com/docs/serverless-functions/introduction)).
 
 ```bash
-curl http://localhost:3000/api/img/random -I
+curl https://dynart.edede.ca/api/img/random -I
 HTTP/1.1 200 OK
 X-RateLimit-Limit: 10
 X-RateLimit-Remaining: 9
 
-curl http://localhost:3000/api/img/random -I
+curl https://dynart.edede.ca/api/img/random -I
 HTTP/1.1 429 Too Many Requests
 X-RateLimit-Limit: 10
 X-RateLimit-Remaining: 0
