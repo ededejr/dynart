@@ -55,4 +55,4 @@ function verifyModelParam(model: string) {
   return ['clock', 'de-logo', 'dynamic-colorful-polylines', 'gradients-and-flat-colors'].includes(model)
 }
 
-const getHostname = () => process.env.NODE_ENV === 'development' ? '' : 'https://dynart.edede.ca';
+const getHostname = () => process.env.NODE_ENV === 'development' ? '' : 'https://dynart.edede.com';

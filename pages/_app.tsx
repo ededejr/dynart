@@ -48,8 +48,8 @@ export default function App({ Component, pageProps, router }: AppProps) {
 const meta = {
   title: 'dynart',
   description: 'Images generated on the fly using React and Resvg.',
-  image: 'https://dynart.edede.ca/api/img/random',
-  url: 'https://dynart.edede.ca',
+  image: 'https://dynart.edede.com/api/img/random',
+  url: 'https://dynart.edede.com',
   owner: {
     twitter: '@ededejr',
   }

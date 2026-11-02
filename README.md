@@ -23,12 +23,12 @@ npx create-next-app --example api-routes-rate-limit api-routes-rate-limit-app
 An `lru-cache` is used to implement a simple rate limiter for API routes ([Serverless Functions](https://vercel.com/docs/serverless-functions/introduction)).
 
 ```bash
-curl https://dynart.edede.ca/api/img/random -I
+curl https://dynart.edede.com/api/img/random -I
 HTTP/1.1 200 OK
 X-RateLimit-Limit: 10
 X-RateLimit-Remaining: 9
 
-curl https://dynart.edede.ca/api/img/random -I
+curl https://dynart.edede.com/api/img/random -I
 HTTP/1.1 429 Too Many Requests
 X-RateLimit-Limit: 10
 X-RateLimit-Remaining: 0
